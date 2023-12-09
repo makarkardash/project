@@ -1,37 +1,66 @@
-import pygame
-import sys
+# Создаем пустое игровое поле
+игровое_поле = [[' ', ' ', ' '],
+               [' ', ' ', ' '],
+               [' ', ' ', ' ']]
 
-pygame.init()
-size_block = 100
-margin = 15
-width = height = size_block*3 + margin*4
+# Функция для отрисовки игрового поля
+def рисовать_поле(поле):
+    print('---------')
+    for строка in поле:
+        print('|', end='')
+        for клетка in строка:
+            print(клетка, '|', end='')
+        print('\n---------')
 
-size_window = (width,height)
-screen = pygame.display.set_mode(size_window)
-pygame.display.set_caption("Крестики-нолики")
+# Функция для хода игрока
+def играть_ход(поле, игрок):
+    строка = int(input('Выберите строку (от 1 до 3): ')) - 1
+    столбец = int(input('Выберите столбец (от 1 до 3): ')) - 1
 
-black = (0, 0, 0)
-red = (255, 0, 0)
-green = (0, 255, 0)
-mas = [[0]*3 for i in range(3)]
+    # Проверяем, что выбранная клетка пуста
+    if поле[строка][столбец] == ' ':
+        поле[строка][столбец] = игрок
+    else:
+        print('Выбранная клетка уже занята. Выберите другую клетку.')
+        играть_ход(поле, игрок)
 
-while True:
-    for event in pygame.event.get() :
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit(0)
-        elif event.type == pygame.MOUSEBUTTONDOWN :
-            x_mouse, y_mouse = pygame.mouse.get_pos()
-            x_b =x_mouse // (size_block + margin)
-            x_a = x_mouse // (size_block + margin)
-            mas [a] [b] = 'x'
+# Функция для проверки условия победы
+def проверить_победу(поле, игрок):
+    # Проверяем горизонтали и вертикали
+    for i in range(3):
+        if поле[i][0] == поле[i][1] == поле[i][2] == игрок or \
+           поле[0][i] == поле[1][i] == поле[2][i] == игрок:
+            return True
 
-    for a in range (3) :
-        for b in range (3) :
-            if mas [a] [b] == 'x' :
-           x = b * size_block + (b + 1) * margin
-           y = a * size_block + (a + 1) * margin
-           pygame.draw.rect(screen, , (x,y,size_block,size_block))
-    pygame.display.update()
+    # Проверяем диагонали
+    if поле[0][0] == поле[1][1] == поле[2][2] == игрок or \
+       поле[0][2] == поле[1][1] == поле[2][0] == игрок:
+        return True
 
+    return False
 
+# Главная функция игры
+def играть_крестики_нолики():
+    текущий_игрок = 'X'
+
+    while True:
+        рисовать_поле(игровое_поле)
+        играть_ход(игровое_поле, текущий_игрок)
+
+        # Проверяем условие победы
+        if проверить_победу(игровое_поле, текущий_игрок):
+            рисовать_поле(игровое_поле)
+            print(f'Победил игрок {текущий_игрок}!')
+            break
+
+        # Проверяем условие ничьи
+        if all(клетка != ' ' for строка in игровое_поле for клетка in строка):
+            рисовать_поле(игровое_поле)
+            print('Ничья!')
+            break
+
+        # Меняем игрока
+        текущий_игрок = 'O' if текущий_игрок == 'X' else 'X'
+
+# Запускаем игру
+играть_крестики_нолики()
