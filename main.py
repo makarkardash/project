@@ -1,10 +1,12 @@
-def calculate_mean(numbers):
-    total = 0
-    for num in numbers:
-        total += num
-    mean = total / len(numbers)
-    return mean
+def calculate_area(length, width):
+    return length * width
 
-my_list = [3, 4, 5, 6, 7]
-result = calculate_mean(my_list)
-print(result)
+# Вводим значения длины и ширины с клавиатуры
+length = int(input("Введите длину прямоугольника: "))
+width = int(input("Введите ширину прямоугольника: "))
+
+# Вызываем функцию calculate_area и передаем ей значения длины и ширины
+area = calculate_area(length, width)
+
+# Выводим площадь прямоугольника на экран
+print("Площадь прямоугольника равна:", area)
