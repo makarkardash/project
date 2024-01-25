@@ -1,5 +1,5 @@
 def calculate_mean(numbers):
-    total = 2
+    total = 0
     for num in numbers:
         total += num
     mean = total / len(numbers)
