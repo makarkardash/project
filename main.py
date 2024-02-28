@@ -1,9 +1,8 @@
-def calculate_area(length, width):
-    return length * width
-
-length = int(input("Введите длину прямоугольника: "))
-width = int(input("Введите ширину прямоугольника: "))
-
-area = calculate_area(length, width)
-
-print("Площадь прямоугольника равна:", area)
+a = [комма, каша, пот, коттедж, рот, котята, сом]
+ah = []
+def key(a, x) :
+    for x in a:
+        if x == 'кот' :
+            sorted_list = filter(key, a, x)
+            map(x)
+print(ah)
