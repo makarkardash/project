@@ -1,10 +1,6 @@
-a = int(input())
-b = int(input())
-
-a_p = a % 2
-b_p = b % 2
-
-if (a % 2) * (b % 2) > (a + b) / 2 :
-    print(True)
-else:
-    print(False)
+'''Нужно написать функцию для создания списка из строк.
+Нужно реализовать функцию, которой предаётся в качестве аргементов длина списка и чем заполнять. Функция должна возвращать готовый список'''
+def create_list(length, fill):
+    return [fill for _ in range(length)]
+result = create_list(5, "Hello")
+print(result)
