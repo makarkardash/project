@@ -1,6 +1,6 @@
-'''Нужно написать функцию для создания списка из строк.
-Нужно реализовать функцию, которой предаётся в качестве аргементов длина списка и чем заполнять. Функция должна возвращать готовый список'''
-def create_list(length, fill):
-    return [fill for _ in range(length)]
-result = create_list(5, "Hello")
-print(result)
+# Нужно написать функцию для возврата квадрата переданного ей числа.
+def square(namber):
+    return namber ** 2
+namber = 15
+result = square(namber)
+print(f"Квадрат числа {namber} равен {result}")
