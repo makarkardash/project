@@ -1,7 +1,5 @@
-def s_area(w, h):
-    area = w * h
-    return area
-w = 10
-h = 15
-result = s_area(w, h)
-print(f'Площадь прямоугольника с шириной {w} и длиной {h} равна {result}')
+a = int(input("Введите число: "))
+if a % 4 == 0:
+    print("Число делится на 4 без остатка")
+else:
+    print("Число не делится на 4 без остатка")
